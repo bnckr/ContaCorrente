@@ -1,8 +1,8 @@
 
 type Operacao = {
   data: Date;
-  operacao: string,
-  valor: number;
+  operacao: string, //plus Permitir apenas operacoes válidas 
+  valor: number ;
 };
 
 export class ContaCorrente {
@@ -44,6 +44,7 @@ export class ContaCorrente {
     return this._saldo;
   }
 
+  //Exibir em formato de extrato
   exibirExtrato(): void {
     this.historico.forEach((data)  => {
       console.log(data)

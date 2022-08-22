@@ -50,6 +50,13 @@ export class ContaCorrente {
       console.log(data)
     });
   }
+
+    //Exibir em formato de extrato por periodo de tempo
+    exibirExtratoPorData(inicio: Date, fim: Date): void {
+      //Implementar
+      
+    }
+
 }
 
 

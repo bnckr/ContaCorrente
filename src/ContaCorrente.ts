@@ -15,7 +15,7 @@ export class ContaCorrente {
     this.historico = [];
   }
 
-  sacar(valor: number): number {
+  sacar(valor: number, data: Date): number {
     if (valor < 0) {
       return 0.0;
     }
@@ -25,18 +25,18 @@ export class ContaCorrente {
     }
 
     this._saldo -= valor;
-    this.historico.push({ data: new Date(), operacao: "Saque", valor: valor });
+    this.historico.push({ data: data, operacao: "Saque", valor: valor });
     return valor;
   }
 
-  depositar(valor: number): number {
+  depositar(valor: number, data: Date): number {
     if (valor < 0) {
       return 0.0;
     }
 
     this._saldo += valor;
     this.historico.push({
-      data: new Date(),
+      data: data,
       operacao: "Depósito",
       valor: valor,
     });
@@ -69,12 +69,15 @@ export class ContaCorrente {
 
 const conta = new ContaCorrente("0001", 0.0);
 
-conta.depositar(100);
-conta.depositar(100);
-conta.sacar(50);
-console.log(conta.consultar());
+conta.depositar(10, new Date(2022, 1, 13));
+conta.depositar(102, new Date(2022, 1, 14));
+conta.sacar(42, new Date(2022, 1, 14));
+conta.depositar(100, new Date(2022, 1, 15));
+conta.depositar(72, new Date(2022, 1, 15));
+conta.sacar(50, new Date(2022, 1, 15));
 conta.exibirExtrato();
 conta.exibirExtratoPorData(
-  new Date("2022-08-22T00:00:00.000Z"),
-  new Date("2022-08-26T00:00:00.000Z")
+  new Date("2022-02-15T00:00:00.000Z"),
+  new Date("2022-02-16T00:00:00.000Z")
 );
+console.log(conta.consultar());
